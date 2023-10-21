@@ -12,8 +12,7 @@ using std::time;
 int rollDice();
 
 int main(){
-
-    enum Status{ CONTINUE, WON, LOST};
+    enum Status{ CONTINUE, WON, LOST };
 
     int myPoint;
     Status gameStatus;
