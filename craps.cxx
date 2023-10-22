@@ -17,11 +17,11 @@ int main(){
     int myPoint;
     Status gameStatus;
 
-    srand( time(0));
+    srand( time(0) );
 
     int sumeOfDice = rollDice();
 
-    switch( sumeOfDice){
+    switch( sumeOfDice ){
         case 7:
         case 11:
             gameStatus = WON;
@@ -38,7 +38,7 @@ int main(){
             break;
     }
 
-    while( gameStatus == CONTINUE){
+    while( gameStatus == CONTINUE ) {
         sumeOfDice = rollDice();
 
         if( sumeOfDice == myPoint)
