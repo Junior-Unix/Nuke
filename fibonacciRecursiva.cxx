@@ -6,8 +6,15 @@ unsigned long fibonacci(unsigned long);
 
 int main(){
 
-    for (int counter = 0; counter <=10; counter++)
+    int n = 0;
+
+    cout << "Insira um numero: ";
+    cin >> n;
+
+    for (int counter = 0; counter <= n; counter++)
         cout << "fibonacci( " << counter << " ) = " << fibonacci(counter) << endl;
+
+    
 
 
 
