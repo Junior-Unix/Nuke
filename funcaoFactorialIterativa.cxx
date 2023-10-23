@@ -9,9 +9,13 @@ using std::setw;
 unsigned long factorial(unsigned long);
 
 int main(){
-    
 
-    for (int counter = 0; counter <= 10; counter++){
+    int n = 0;
+
+    cout << "Insira um numero: ";
+    cin >> n;
+
+    for (int counter = 0; counter <= n; counter++){
         cout << setw(2) << counter << "! = " << factorial(counter) << endl;
     }
 
