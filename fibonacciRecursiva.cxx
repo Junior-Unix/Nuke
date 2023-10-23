@@ -3,7 +3,7 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-unsigned long fibonacci(unsigned long);
+unsigned long fibonacci(register unsigned long);
 
 int main(){
 
@@ -22,7 +22,7 @@ int main(){
     return 0;
 }
 
-unsigned long fibonacci(unsigned long number){
+unsigned long fibonacci(register unsigned long number){
 
     if((number ==0) || (number ==1))
         return number;
