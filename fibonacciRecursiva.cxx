@@ -1,5 +1,6 @@
 #include <iostream>
 using std::cout;
+using std::cin;
 using std::endl;
 
 unsigned long fibonacci(unsigned long);
@@ -11,7 +12,7 @@ int main(){
     cout << "Insira um numero: ";
     cin >> n;
 
-    for (int counter = 0; counter <= n; counter++)
+    for (int counter = 0; counter <= n; counter++) //cuidado com o valor iserido aqui, a recursao pode levar a funcao fibonacci a valores altos muito rápido.
         cout << "fibonacci( " << counter << " ) = " << fibonacci(counter) << endl;
 
     
