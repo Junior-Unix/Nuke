@@ -15,7 +15,7 @@ using std::time;
 int main(){
 
     const int arraySize{7};
-    int frequency[arraySize]={0};
+    int frequency[arraySize]{0};
 
     srand(time(0));
 
