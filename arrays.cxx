@@ -7,10 +7,10 @@ using std::setw;
 
 int main(){
 
-    int n[10];
+    int n[10]{0};
 
     for (int i = 0; i < 10; i++)
-        n[i] = 0;
+        n[i] += 1;
 
         cout << "Element" << setw(10) << "Value" << endl;
 
