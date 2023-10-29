@@ -22,13 +22,13 @@ public:
     }
 
     void displayMessage(){
-        cout "Welcome to the grade book for\n" << getCourseName()
+    cout << "Welcome to the grade book for\n" << getCourseName()
         << "!" << endl;
     }
 
 private:
 
-    string getCourseName;
+    string courseName;
 };
 
 int main(){
