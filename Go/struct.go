@@ -1,49 +1,81 @@
-//interface
+//interface polimorfismo.
 package main
 
 import (
 	"fmt"
-
 )
 
-type imprimivel interface {
-	toString() string
+type esportivo interface {
+	ligarTurbo()
 }
 
-type pessoa struct {
-	nome string
-	sobrenome string
+type ferrari struct {
+	modelo string
+	turboLigado bool
+	velocidadeAtual int
 }
 
-type produto struct {
-	nome string
-	preco float64
-}
-
-func (p pessoa) toString() string {
-	return p.nome + " " + p.sobrenome
-}
-
-func (p produto) toString() string {
-	return fmt.Sprintf("%s = R$ %.2f", p.nome, p.preco)
-}
-
-func imprimir(x imprimivel) {
-	fmt.Println(x.toString())
+func (f *ferrari) ligarTurbo() {
+	f.turboLigado = true
 }
 
 func main() {
-	var coisa imprimivel = pessoa{"Roberso" , "Silva"}
-	fmt.Println(coisa.toString())
+	carro1 := ferrari{"F40", false, 0}
+	//carro1.ligarTurbo()
 
-	coisa = produto{"Calça Jeans", 79.90}
-	fmt.Println(coisa.toString())
-	imprimir(coisa)
+	var carro2 esportivo = &ferrari{"F40", false, 0}
+	//carro2.ligarTurbo()
 
-	p2 := produto{"Calça Jeans", 179.0}
-	imprimir(p2)
-
+	fmt.Println(carro1, carro2)
 }
+
+
+// //interface
+// package main
+
+// import (
+// 	"fmt"
+
+// )
+
+// type imprimivel interface {
+// 	toString() string
+// }
+
+// type pessoa struct {
+// 	nome string
+// 	sobrenome string
+// }
+
+// type produto struct {
+// 	nome string
+// 	preco float64
+// }
+
+// func (p pessoa) toString() string {
+// 	return p.nome + " " + p.sobrenome
+// }
+
+// func (p produto) toString() string {
+// 	return fmt.Sprintf("%s = R$ %.2f", p.nome, p.preco)
+// }
+
+// func imprimir(x imprimivel) {
+// 	fmt.Println(x.toString())
+// }
+
+// func main() {
+// 	var coisa imprimivel = pessoa{"Roberso" , "Silva"}
+// 	fmt.Println(coisa.toString())
+
+// 	coisa = produto{"Calça Jeans", 79.90}
+// 	fmt.Println(coisa.toString())
+// 	imprimir(coisa)
+
+// 	p2 := produto{"Calça Jeans", 179.0}
+// 	imprimir(p2)
+
+// }
 
 
 
