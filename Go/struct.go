@@ -23,6 +23,9 @@ func (p *pessoa) setNomeCompleto(nomeCompleto string) {
 func main() {
 	p1 := pessoa{"Pedro", "Silva"}
 	fmt.Println(p1.getNomeCompleto())
+
+	p1.setNomeCompleto("Maria Pereira")
+	fmt.Println(p1.getNomeCompleto())
 }
 
 // package main
