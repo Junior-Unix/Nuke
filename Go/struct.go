@@ -1,33 +1,103 @@
-//interface polimorfismo.
+//Tipo interface.
 package main
 
 import (
 	"fmt"
 )
 
-type esportivo interface {
-	ligarTurbo()
-}
-
-type ferrari struct {
-	modelo string
-	turboLigado bool
-	velocidadeAtual int
-}
-
-func (f *ferrari) ligarTurbo() {
-	f.turboLigado = true
+type curso struct {
+	nome string
 }
 
 func main() {
-	carro1 := ferrari{"F40", false, 0}
-	//carro1.ligarTurbo()
+	var coisa interface{}
+	fmt.Println(coisa)
 
-	var carro2 esportivo = &ferrari{"F40", false, 0}
-	//carro2.ligarTurbo()
+	coisa = 3
+	fmt.Println(coisa)
 
-	fmt.Println(carro1, carro2)
+	type dinamico interface{}
+
+	var coisa2 dinamico = "Opa"
+	fmt.Println(coisa2)
+
+	coisa2 = true
+	fmt.Println(coisa2)
+
+	coisa2 = curso{"Curso Golang"}
+	fmt.Println(coisa2)
 }
+
+
+// package main
+
+// import (
+// 	"fmt"
+// )
+
+// type esportivo interface {
+// 	ligarTurbo()
+// }
+
+// type luxuoso interface {
+// 	fazerBaliza()
+// }
+
+// type esportivoLuxuoso interface {
+// 	esportivo
+// 	luxuoso
+// }
+
+// type bmw7 struct{}
+
+// func (b bmw7) ligarTurbo() {
+// 	fmt.Println("Turbo...")
+// }
+
+// func (b bmw7) fazerBaliza() {
+// 	fmt.Println("Baliza...")
+// }
+
+// func main() {
+
+// 	var b esportivoLuxuoso = bmw7{}
+// 	b.ligarTurbo()
+// 	b.fazerBaliza()
+// }
+
+
+
+
+// //interface polimorfismo.
+// package main
+
+// import (
+// 	"fmt"
+// )
+
+// type esportivo interface {
+// 	ligarTurbo()
+// }
+
+// type ferrari struct {
+// 	modelo string
+// 	turboLigado bool
+// 	velocidadeAtual int
+// }
+
+// func (f *ferrari) ligarTurbo() {
+// 	f.turboLigado = true
+// }
+
+// func main() {
+// 	carro1 := ferrari{"F40", false, 0}
+// 	//carro1.ligarTurbo()
+
+// 	var carro2 esportivo = &ferrari{"F40", false, 0}
+// 	//carro2.ligarTurbo()
+
+// 	fmt.Println(carro1, carro2)
+// }
 
 
 // //interface
