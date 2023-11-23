@@ -1,30 +1,57 @@
-//JSon
-
 package main
 
 import (
-	"fmt"
-	"encoding/json"
-
+	"math"
 )
 
-type produto struct {
-	ID int `json:"id"`
-	Nome string `json:"nome"`
-	Preco float64 `json:"preco"`
-	Tags []string `json:"tags"`
+//Ponto representa uma coordenada no plano cartesiano.
+type Ponto struct {
+	x float64
+	y float64
 }
 
-func main() {
-	p1 := produto{1, "Notebook", 1899.99, []string{"Promoção", "Eletrônico"}}
-	p1Json, _ := json.Marshal(p1)
-	fmt.Println(string(p1Json))
-
-	var p2 produto
-	jsonString := `{"is":2,"nome":"Caneta","preco":8.90,"tags":["Papelaria","Importado"]}`
-	json.Unmarshal([]byte(jsonString), &p2)
-	fmt.Println(p2.Tags[1])
+func catetos(a, b Ponto) (cx, cy float64) {
+	cx = math.Abs(b.x - a.x)
+	cy = math.Abs(b.y - a.y)
+	return
 }
+//Distancia é responsável por calcular a distância linear entre dois pontos
+func Distancia(a, b Ponto) float64 {
+	cx, cy := catetos( a, b)
+	return math.Sqrt(math.Pow(cx, 2) + math.Pow(cy, 2))	
+}
+
+
+
+
+
+// //JSon
+
+// package main
+
+// import (
+// 	"fmt"
+// 	"encoding/json"
+
+// )
+
+// type produto struct {
+// 	ID int `json:"id"`
+// 	Nome string `json:"nome"`
+// 	Preco float64 `json:"preco"`
+// 	Tags []string `json:"tags"`
+// }
+
+// func main() {
+// 	p1 := produto{1, "Notebook", 1899.99, []string{"Promoção", "Eletrônico"}}
+// 	p1Json, err := json.Marshal(p1)
+// 	fmt.Println(string(p1Json), err)
+
+// 	var p2 produto
+// 	jsonString := `{"is":2,"nome":"Caneta","preco":8.90,"tags":["Papelaria","Importado"]}`
+// 	json.Unmarshal([]byte(jsonString), &p2)
+// 	fmt.Println(p2.Tags[1])
+// }
 
 
 
