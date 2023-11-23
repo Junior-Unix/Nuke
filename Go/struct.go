@@ -1,32 +1,59 @@
-//Tipo interface.
+//JSon
+
 package main
+
+import "encoding/json"
 
 import (
 	"fmt"
 )
 
-type curso struct {
-	nome string
+type produto struct {
+	ID int `json:"id"`
+	Nome string `json:"nome"`
+	Preco float64 `json:"preco"`
+	Tags []string `json:"tags"`
 }
 
 func main() {
-	var coisa interface{}
-	fmt.Println(coisa)
-
-	coisa = 3
-	fmt.Println(coisa)
-
-	type dinamico interface{}
-
-	var coisa2 dinamico = "Opa"
-	fmt.Println(coisa2)
-
-	coisa2 = true
-	fmt.Println(coisa2)
-
-	coisa2 = curso{"Curso Golang"}
-	fmt.Println(coisa2)
+	p1 := produto{1, "Notebook", 1899.99, []string{"Promoção", "Eletrônico"}}
+	p1Json, _ := json.Marshal(p1)
+	fmt.Println(string(p1Json))
 }
+
+
+
+
+
+// //Tipo interface.
+// package main
+
+// import (
+// 	"fmt"
+// )
+
+// type curso struct {
+// 	nome string
+// }
+
+// func main() {
+// 	var coisa interface{}
+// 	fmt.Println(coisa)
+
+// 	coisa = 3
+// 	fmt.Println(coisa)
+
+// 	type dinamico interface{}
+
+// 	var coisa2 dinamico = "Opa"
+// 	fmt.Println(coisa2)
+
+// 	coisa2 = true
+// 	fmt.Println(coisa2)
+
+// 	coisa2 = curso{"Curso Golang"}
+// 	fmt.Println(coisa2)
+// }
 
 
 // package main
