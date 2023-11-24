@@ -1,15 +1,41 @@
-//Quantidade de processadores
 package main
 
 import (
-
 	"fmt"
-	"runtime"
+	"time"
 )
 
-func main() {
-	fmt.Println(runtime.NumCPU())
+func fale(pessoa, texto string, qtde int) {
+	for i := 0; i < qtde; i++ {
+		time.Sleep(time.Second)
+		fmt.Printf("%s: %s (iteração %d)\n", pessoa, texto, i+1)
+	}
 }
+
+func main() {
+	// go fale("Maria", "Pq não fala?", 500)
+	// go fale("Joao", "Só depois!", 500)
+	// fmt.Println("Fim!")
+
+		go fale("Maria", "Entendi!!!", 10)
+		fale("João", "Parabéns!", 5)
+
+
+}
+
+
+// //Quantidade de processadores
+// package main
+
+// import (
+
+// 	"fmt"
+// 	"runtime"
+// )
+
+// func main() {
+// 	fmt.Println(runtime.NumCPU())
+// }
 
 // package main
 
