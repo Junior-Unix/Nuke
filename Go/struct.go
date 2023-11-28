@@ -1,31 +1,103 @@
-//Chanel2
-package main
+// //Primo
+// package main
 
-import (
-	"fmt"
-	"time"
-)
+// import(
+// 	"fmt"
+// 	"time"
+// )
 
-func dtqx(base int, c chan int) {
-	time.Sleep(time.Second)
-	c <- 2 * base
+// func isPrimo(num int) bool {
+// 	for i := 2; i < num; i++{
+// 		if num%i == 0 {
+// 			return false
+// 		}
+// 	}
+// 	return true
+// }
 
-	time.Sleep(time.Second)
-	c <- 3 * base
+// func primos(n int, c chan int){
+// 	inicio := 2
+// 	for i := 0; i < n; i++{
+// 		for primo := inicio; ; primo++ {
+// 			if isPrimo(primo){
+// 				c <- primo
+// 				inicio = primo + 1
+// 				time.Sleep(time.Millisecond * 180)
+// 				break
+// 			}
+// 		}
+// 	}
+// 	close(c)
+// }
 
-	time.Sleep( 3 * time.Second)
-	c <- 4 * base
-}
+// func main(){
+// 	c := make(chan int, 30)
+// 	go primos(cap(c), c)
+// 	for primo := range c{
+// 		fmt.Printf("%d ", primo)
+// 	}
+// 	fmt.Println("Fim!")
+// }
+//Buffer
 
-func main() {
-	c := make(chan int)
-	go dtqx(2, c)
+// // Bloqueio
+// package main
 
-	a, b := <-c, <-c
-	fmt.Println(a, b)
+// import (
+// 	"fmt"
+// 	"time"
+// )
 
-	fmt.Println(<-c)
-}
+// func rotina( c chan int) {
+// 	time.Sleep(time.Second)
+// 	c <- 1 //Operação bloqueante
+// 	fmt.Println("Só depois que for lido")
+// }
+
+// func main() {
+// 	c := make(chan int) //canal sem buffer
+
+// 	go rotina(c)
+// 	fmt.Println(<-c)
+// 	fmt.Println("Foi lido")
+// 	fmt.Println(<-c)
+// 	fmt.Println("Fim")
+
+// }
+
+
+
+
+
+
+// //Chanel2
+// package main
+
+// import (
+// 	"fmt"
+// 	"time"
+// )
+
+// func dtqx(base int, c chan int) {
+// 	time.Sleep(time.Second)
+// 	c <- 2 * base
+
+// 	time.Sleep(time.Second)
+// 	c <- 3 * base
+
+// 	time.Sleep( 3 * time.Second)
+// 	c <- 4 * base
+// }
+
+// func main() {
+// 	c := make(chan int)
+// 	go dtqx(2, c)
+
+// 	a, b := <-c, <-c
+// 	fmt.Println(a, b)
+
+// 	fmt.Println(<-c)
+// }
 
 
 // //Chanel1
