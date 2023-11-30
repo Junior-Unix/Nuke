@@ -1,4 +1,4 @@
-//Concorrência - generator
+// //Concorrência - generator
 package main
 
 import(
@@ -8,14 +8,48 @@ import(
 	"fmt"
 )
 
+// func titulo(urls ...string) <-chan string {
+// 	c := make(chan string)
+// 	for _, url := range urls {
+// 		go func(url string) {
+// 			resp, _ := http.Get(url)
+// 			html, _ := ioutil.ReadAll(resp.Body)
+
+// 			r, _ := regexp.Compile("<title>(.*?)<\\/title>")
+// 			c <- r.FindStringSubmatch(string(html))[1]
+// 		}(url)
+// 	}
+// 	return c
+// }
+
+// func main() {
+// 	t1 := titulo("https://www.youtube.com")
+// 	fmt.Println("Primeiro:", <-t1)
+// }
 func titulo(urls ...string) <-chan string {
 	c := make(chan string)
 	for _, url := range urls {
+		// usa uma função anônima como goroutine para obter o título de cada URL
 		go func(url string) {
-			resp, _ := http.Get(url)
-			html, _ := ioutil.ReadAll(resp.Body)
-
-			r, _ := regexp.Compile("<title>(.*?)<\\/title>")
+			// trata os possíveis erros de requisição e leitura
+			resp, err := http.Get(url)
+			if err != nil {
+				fmt.Println("Erro ao obter a URL:", url, err)
+				return
+			}
+			defer resp.Body.Close() // fecha o corpo da resposta ao final da função
+			html, err := ioutil.ReadAll(resp.Body)
+			if err != nil {
+				fmt.Println("Erro ao ler o HTML:", url, err)
+				return
+			}
+			// usa uma expressão regular para extrair o título da página HTML
+			r, err := regexp.Compile("<title>(.*?)<\\/title>")
+			if err != nil {
+				fmt.Println("Erro ao compilar a expressão regular:", err)
+				return
+			}
+			// envia o título extraído para o canal
 			c <- r.FindStringSubmatch(string(html))[1]
 		}(url)
 	}
@@ -23,10 +57,11 @@ func titulo(urls ...string) <-chan string {
 }
 
 func main() {
+	// recebe o canal que envia os títulos das URLs
 	t1 := titulo("https://www.youtube.com")
+	// imprime o primeiro título recebido do canal
 	fmt.Println("Primeiro:", <-t1)
 }
-
 
 // //Primo
 // package main
