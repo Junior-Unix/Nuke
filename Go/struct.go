@@ -1,3 +1,33 @@
+//Concorrência - generator
+package main
+
+import(
+	"io/ioutil"
+	"net/http"
+	"regexp"
+	"fmt"
+)
+
+func titulo(urls ...string) <-chan string {
+	c := make(chan string)
+	for _, url := range urls {
+		go func(url string) {
+			resp, _ := http.Get(url)
+			html, _ := ioutil.ReadAll(resp.Body)
+
+			r, _ := regexp.Compile("<title>(.*?)<\\/title>")
+			c <- r.FindStringSubmatch(string(html))[1]
+		}(url)
+	}
+	return c
+}
+
+func main() {
+	t1 := titulo("https://www.youtube.com")
+	fmt.Println("Primeiro:", <-t1)
+}
+
+
 // //Primo
 // package main
 
@@ -38,8 +68,31 @@
 // 	}
 // 	fmt.Println("Fim!")
 // }
-//Buffer
+// //Buffer
+// package main
 
+// import(
+// 	"fmt"
+// 	"time"
+// )
+
+// func rotina(ch chan int){
+// 	ch <- 1
+// 	ch <- 2
+// 	ch <- 3
+// 	fmt.Println("Executou!")
+// 	ch <- 4
+// 	ch <- 5
+// 	ch <- 6
+// }
+
+// func main(){
+// 	ch := make(chan int, 3)
+// 	go rotina(ch)
+
+// 	time.Sleep(time.Second)
+// 	fmt.Println(<-ch)
+// }
 // // Bloqueio
 // package main
 
