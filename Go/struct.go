@@ -1,38 +1,83 @@
-// Select
 package main
 
 import (
-	"html"
 	"fmt"
+	"time"
 )
 
-func oMaisRapido(url1, url2, url3 string) string {
-	c1 := html.Titulo(url1)
-	c2 := html.Titulo(url2)
-	c3 := html.Titulo(url3)
 
-	select {
-	case t1 := <-c1:
-		return t1
-	case t2 := <-c2:
-		return t2
-	case t3 := <-c3:
-		return t3
-	case <-time.After(1000 * time.Milliseconds):
-		return "Todos perderam!"
-	default:
-		return "Sem resposta!"
-	}
+func falar(pessoa string) <-chan string {
+	c := make(chan string)
+	go func() {
+		for i := 0; i < 4; i++ {
+			time.Sleep(time.Second)
+			c <- fmt.Sprintf("%s falando: %d", pessoa, i)
+		}
+	}()
+	return c
+}
+
+func juntar(entrada1, entrada2 <-chan string) <-chan string {
+	c := make(chan string)
+	go func() {
+		for {
+			select {
+			case s := <-entrada1:
+				c <- s
+			case s := <-entrada2:
+				c <- s
+			}
+		}
+	}()
+	return c
 }
 
 func main() {
-	campeao := oMaisRapido(
-		"http://www.google.com",
-		"http://www.github.com",
-		"http://www.google.com",
-	)
-	fmt.Println(campeao)
+	c := juntar(falar("João"), falar("Maria"))
+	fmt.Println(<-c, <-c)
+	fmt.Println(<-c, <-c)
+	fmt.Println(<-c, <-c)
+	fmt.Println(<-c, <-c)
+
+
 }
+
+
+// // Select
+// package main
+
+// import (
+// 	"html"
+// 	"fmt"
+// )
+
+// func oMaisRapido(url1, url2, url3 string) string {
+// 	c1 := html.Titulo(url1)
+// 	c2 := html.Titulo(url2)
+// 	c3 := html.Titulo(url3)
+
+// 	select {
+// 	case t1 := <-c1:
+// 		return t1
+// 	case t2 := <-c2:
+// 		return t2
+// 	case t3 := <-c3:
+// 		return t3
+// 	case <-time.After(1000 * time.Milliseconds):
+// 		return "Todos perderam!"
+// 	default:
+// 		return "Sem resposta!"
+// 	}
+// }
+
+// func main() {
+// 	campeao := oMaisRapido(
+// 		"http://www.google.com",
+// 		"http://www.github.com",
+// 		"http://www.google.com",
+// 	)
+// 	fmt.Println(campeao)
+// }
 
 
 // // Multiplexar
