@@ -1,30 +1,67 @@
-// Multiplexar
+// Select
 package main
 
 import (
-	html "_/workspaces/Nuke/Go"
+	"html"
 	"fmt"
 )
 
-func encaminhar(origin <-cnah string, destino chan string) {
-	for {
-		destino <- <-origem
+func oMaisRapido(url1, url2, url3 string) string {
+	c1 := html.Titulo(url1)
+	c2 := html.Titulo(url2)
+	c3 := html.Titulo(url3)
+
+	select {
+	case t1 := <-c1:
+		return t1
+	case t2 := <-c2:
+		return t2
+	case t3 := <-c3:
+		return t3
+	case <-time.After(1000 * time.Milliseconds):
+		return "Todos perderam!"
+	default:
+		return "Sem resposta!"
 	}
 }
 
-func juntar(entrada1, entrada2 <-chan string) <-chan string {
-	c := make(chan string)
-	go encaminhar(entrada1, c)
-	go encaminhar(entrada2, c)
-	return c
+func main() {
+	campeao := oMaisRapido(
+		"http://www.google.com",
+		"http://www.github.com",
+		"http://www.google.com",
+	)
+	fmt.Println(campeao)
 }
 
-func main() { 
-	c := juntar(
-		html.Titulo("www.google.com")
-	)
-	fmt.Println(<-c)
-}
+
+// // Multiplexar
+// package main
+
+// import (
+// 	html "_/workspaces/Nuke/Go"
+// 	"fmt"
+// )
+
+// func encaminhar(origin <-cnah string, destino chan string) {
+// 	for {
+// 		destino <- <-origem
+// 	}
+// }
+
+// func juntar(entrada1, entrada2 <-chan string) <-chan string {
+// 	c := make(chan string)
+// 	go encaminhar(entrada1, c)
+// 	go encaminhar(entrada2, c)
+// 	return c
+// }
+
+// func main() { 
+// 	c := juntar(
+// 		html.Titulo("www.google.com")
+// 	)
+// 	fmt.Println(<-c)
+// }
 
 // // //Concorrência - generator
 // package main
