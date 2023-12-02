@@ -2,6 +2,7 @@ package string
 
 import (
 	"strings"
+	"runtime"
 	"testing"
 )
 
@@ -26,4 +27,12 @@ func TestIndex(t *testing.T) {
 			t.Errorf(msgIndex, teste.texto, teste.parte, teste.esperado, atual)
 		}
 	}
+}
+
+func TestDependente(t *testing.T) {
+	if runtime.GOARCH == "amd64" {
+		t.Skip("Não funciona em arquitetura amd64")
+	}
+
+	t.Fail()
 }
