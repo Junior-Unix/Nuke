@@ -1,4 +1,6 @@
-//Teste unitário
+//Criando dataset para os Testes.
+
+//Teste unitário está em matematica.go e matematica_test.go, com outros arquivos .go.ignora.
 
 
 
