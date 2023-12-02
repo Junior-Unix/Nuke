@@ -30,7 +30,7 @@ func TestIndex(t *testing.T) {
 }
 
 func TestDependente(t *testing.T) {
-	if runtime.GOARCH == "amd64" {
+	if runtime.GOARCH == "amd64'" {
 		t.Skip("Não funciona em arquitetura amd64")
 	}
 
