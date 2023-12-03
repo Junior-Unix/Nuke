@@ -1,35 +1,61 @@
-// Transação
+//Update Delete
 package main
 
 import (
-	//"context"
-	"database/sql"
-	"log"
-
-	_ "github.com/go-sql-driver/mysql"
+    "database/sql"
+    "log"
+    _ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
-	db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/go")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer db.Close()
+    db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/go")
+    if err != nil {
+        log.Fatal(err)
+    }
+    defer db.Close()
 
-	tx, _ := db.Begin()
-	stmt, _ := tx.Prepare("insert into usuarios(id, nome) values(?,?)")
+    stmt, _ := db.Prepare("update usuarios set nome = ? where id = ?")
 
-	stmt.Exec(2000, "Bia")
-	stmt.Exec(2001, "Carlos")
-	//_, err = stmt.Exec(1, "Tiago")
+    stmt.Exec("Junior", 1)
+    stmt.Exec("Yoseph", 2)
 
-	if err != nil {
-		tx.Rollback()
-		log.Fatal(err)
-	}
-
-	tx.Commit()
+    stmt2, _ := db.Prepare("delete from usuarios where id = ?")
+    stmt2.Exec(3)
 }
+
+
+// // Transação
+// package main
+
+// import (
+// 	//"context"
+// 	"database/sql"
+// 	"log"
+
+// 	_ "github.com/go-sql-driver/mysql"
+// )
+
+// func main() {
+// 	db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/go")
+// 	if err != nil {
+// 		log.Fatal(err)
+// 	}
+// 	defer db.Close()
+
+// 	tx, _ := db.Begin()
+// 	stmt, _ := tx.Prepare("insert into usuarios(id, nome) values(?,?)")
+
+// 	stmt.Exec(2000, "Bia")
+// 	stmt.Exec(2001, "Carlos")
+// 	//_, err = stmt.Exec(1, "Tiago")
+
+// 	if err != nil {
+// 		tx.Rollback()
+// 		log.Fatal(err)
+// 	}
+
+// 	tx.Commit()
+// }
 
 // Insert
 // Git exemplo----------------------------------------------------------------
