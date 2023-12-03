@@ -1,3 +1,36 @@
+// Transação
+package main
+
+import (
+	//"context"
+	"database/sql"
+	"log"
+
+	_ "github.com/go-sql-driver/mysql"
+)
+
+func main() {
+	db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/go")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	tx, _ := db.Begin()
+	stmt, _ := tx.Prepare("insert into usuarios(id, nome) values(?,?)")
+
+	stmt.Exec(2000, "Bia")
+	stmt.Exec(2001, "Carlos")
+	//_, err = stmt.Exec(1, "Tiago")
+
+	if err != nil {
+		tx.Rollback()
+		log.Fatal(err)
+	}
+
+	tx.Commit()
+}
+
 // Insert
 // Git exemplo----------------------------------------------------------------
 // package main
@@ -30,34 +63,34 @@
 // }
 // __________________________________________________________________
 
-package main
+// package main
 
-import (
-	"database/sql"
-	"fmt"
+// import (
+// 	"database/sql"
+// 	"fmt"
 
-	_ "github.com/go-sql-driver/mysql"
-)
+// 	_ "github.com/go-sql-driver/mysql"
+// )
 
-func main() {
-    db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/go")
-    if err != nil {
-        panic(err)
-    }
-    defer db.Close()
+// func main() {
+//     db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/go")
+//     if err != nil {
+//         panic(err)
+//     }
+//     defer db.Close()
 
-    stmt, _ := db.Prepare("insert into usuarios(nome) values(?)")
-    stmt.Exec("Maria")
-    stmt.Exec("João")
+//     stmt, _ := db.Prepare("insert into usuarios(nome) values(?)")
+//     stmt.Exec("Maria")
+//     stmt.Exec("João")
 
-    res, _ := stmt.Exec("Pedro")
+//     res, _ := stmt.Exec("Pedro")
 
-    id, _ := res.LastInsertId()
-    fmt.Println(id)
+//     id, _ := res.LastInsertId()
+//     fmt.Println(id)
 
-    linhas, _ := res.RowsAffected()
-    fmt.Println(linhas)
-}
+//     linhas, _ := res.RowsAffected()
+//     fmt.Println(linhas)
+// }
 // //Mysql
 // package main
 
@@ -89,8 +122,6 @@ func main() {
 //         PRIMARY KEY (id)
 //     )`)
 // }
-
-
 
 // package main
 
@@ -145,13 +176,13 @@ func main() {
 
 // 	defer db.Close()
 
-	// result, err := db.Exec("create database if not exists go")
+// result, err := db.Exec("create database if not exists go")
 
-	// if err != nil {
-	// 	panic(err)
-	// }
+// if err != nil {
+// 	panic(err)
+// }
 
-	// fmt.Println(result.LastInsertId())
+// fmt.Println(result.LastInsertId())
 
 // 	exec(db, "create database if not exists go")
 // 	exec(db, "use go")
