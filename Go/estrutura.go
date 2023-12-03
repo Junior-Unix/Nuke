@@ -1,34 +1,94 @@
-//Mysql
+// Insert
+// Git exemplo----------------------------------------------------------------
+// package main
+
+// import (
+// 	"database/sql"
+// 	"fmt"
+
+// 	_ "github.com/go-sql-driver/mysql"
+// )
+
+// func main() {
+// 	db, err := sql.Open("mysql", "root:123456@/cursogo")
+// 	if err != nil {
+// 		panic(err)
+// 	}
+// 	defer db.Close()
+
+// 	stmt, _ := db.Prepare("insert into usuarios(nome) values(?)")
+// 	stmt.Exec("Maria")
+// 	stmt.Exec("João")
+
+// 	res, _ := stmt.Exec("Pedro")
+
+// 	id, _ := res.LastInsertId()
+// 	fmt.Println(id)
+
+// 	linhas, _ := res.RowsAffected()
+// 	fmt.Println(linhas)
+// }
+// __________________________________________________________________
+
 package main
 
 import (
-    "database/sql"
-    _ "github.com/go-sql-driver/mysql"
+	"database/sql"
+	"fmt"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
-func exec(db *sql.DB, sql string) sql.Result {
-    result, err := db.Exec(sql)
-    if err != nil {
-        panic(err)
-    }
-    return result
-}
 func main() {
-    db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/")
+    db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/go")
     if err != nil {
         panic(err)
     }
     defer db.Close()
 
-    exec(db, "create database if not exists go")
-    exec(db, "use go")
-    exec(db, "drop table if exists usuarios")
-    exec(db, `create table usuarios (
-        id integer auto_increment,
-        nome varchar(80),
-        PRIMARY KEY (id)
-    )`)
+    stmt, _ := db.Prepare("insert into usuarios(nome) values(?)")
+    stmt.Exec("Maria")
+    stmt.Exec("João")
+
+    res, _ := stmt.Exec("Pedro")
+
+    id, _ := res.LastInsertId()
+    fmt.Println(id)
+
+    linhas, _ := res.RowsAffected()
+    fmt.Println(linhas)
 }
+// //Mysql
+// package main
+
+// import (
+//     "database/sql"
+//     _ "github.com/go-sql-driver/mysql"
+// )
+
+// func exec(db *sql.DB, sql string) sql.Result {
+//     result, err := db.Exec(sql)
+//     if err != nil {
+//         panic(err)
+//     }
+//     return result
+// }
+// func main() {
+//     db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/")
+//     if err != nil {
+//         panic(err)
+//     }
+//     defer db.Close()
+
+//     exec(db, "create database if not exists go")
+//     exec(db, "use go")
+//     exec(db, "drop table if exists usuarios")
+//     exec(db, `create table usuarios (
+//         id integer auto_increment,
+//         nome varchar(80),
+//         PRIMARY KEY (id)
+//     )`)
+// }
 
 
 
