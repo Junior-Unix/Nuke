@@ -1,27 +1,79 @@
-//Update Delete
+//http
+
 package main
 
 import (
-    "database/sql"
     "log"
-    _ "github.com/go-sql-driver/mysql"
+    "net/http"
 )
-
 func main() {
-    db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/go")
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer db.Close()
+    fs := http.FileServer(http.Dir("public"))
+    http.Handle("/", fs)
 
-    stmt, _ := db.Prepare("update usuarios set nome = ? where id = ?")
-
-    stmt.Exec("Junior", 1)
-    stmt.Exec("Yoseph", 2)
-
-    stmt2, _ := db.Prepare("delete from usuarios where id = ?")
-    stmt2.Exec(3)
+    log.Println("Executando...")
+    log.Fatal(http.ListenAndServe(":3000", nil))
 }
+
+// //Select
+
+// package main
+
+// import (
+// 	"log"
+//     "fmt"
+//     "database/sql"
+// 	_ "github.com/go-sql-driver/mysql"
+// )
+
+// type usuario struct {
+//     id int
+//     nome string
+// }
+
+// func main() {
+//     db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/go")
+//     if err != nil {
+//         log.Fatal(err)
+//     }
+//     defer db.Close()
+
+//     rows, _ := db.Query("select id, nome  from usuarios where id > ?", 0)
+//     defer rows.Close()
+
+//     for rows.Next() {
+//         var u usuario
+//         rows.Scan(&u.id, &u.nome)
+//         fmt.Println(u)
+
+//     }
+// }
+
+
+
+// //Update Delete
+// package main
+
+// import (
+//     "database/sql"
+//     "log"
+//     _ "github.com/go-sql-driver/mysql"
+// )
+
+// func main() {
+//     db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1:3306)/go")
+//     if err != nil {
+//         log.Fatal(err)
+//     }
+//     defer db.Close()
+
+//     stmt, _ := db.Prepare("update usuarios set nome = ? where id = ?")
+
+//     stmt.Exec("Junior", 1)
+//     stmt.Exec("Yoseph", 2)
+
+//     stmt2, _ := db.Prepare("delete from usuarios where id = ?")
+//     stmt2.Exec(3)
+// }
 
 
 // // Transação
