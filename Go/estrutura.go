@@ -1,18 +1,118 @@
-//http
-
+// Server DB. Rest metodo GET.
 package main
 
 import (
-    "log"
-    "net/http"
-)
-func main() {
-    fs := http.FileServer(http.Dir("public"))
-    http.Handle("/", fs)
+	"database/sql"
+	"encoding/json"
+	"fmt"
+	"log"
+	"net/http"
+	"strconv"
+	"strings"
 
-    log.Println("Executando...")
-    log.Fatal(http.ListenAndServe(":3000", nil))
+	_ "github.com/go-sql-driver/mysql"
+)
+
+// Usuario :)
+type Usuario struct {
+	ID   int    `json:"id"`
+	Nome string `json:"nome"`
 }
+
+// UsuarioHandler analisa o request e delega para função adequada
+func UsuarioHandler(w http.ResponseWriter, r *http.Request) {
+	sid := strings.TrimPrefix(r.URL.Path, "/usuarios/")
+	id, _ := strconv.Atoi(sid)
+
+	switch {
+	case r.Method == "GET" && id > 0:
+		usuarioPorID(w, r, id)
+	case r.Method == "GET":
+		usuarioTodos(w, r)
+	default:
+		w.WriteHeader(http.StatusNotFound)
+		fmt.Fprintf(w, "Desculpa... :(")
+	}
+}
+
+func usuarioPorID(w http.ResponseWriter, r *http.Request, id int) {
+	db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1)/go")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	var u Usuario
+	db.QueryRow("select id, nome from usuarios where id = ?", id).Scan(&u.ID, &u.Nome)
+
+	json, _ := json.Marshal(u)
+
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Fprint(w, string(json))
+}
+
+func usuarioTodos(w http.ResponseWriter, r *http.Request) {
+	db, err := sql.Open("mysql", "root:root@tcp(127.0.0.1)/go")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+
+	rows, _ := db.Query("select id, nome from usuarios")
+	defer rows.Close()
+
+	var usuarios []Usuario
+	for rows.Next() {
+		var usuario Usuario
+		rows.Scan(&usuario.ID, &usuario.Nome)
+		usuarios = append(usuarios, usuario)
+	}
+
+	json, _ := json.Marshal(usuarios)
+
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Fprint(w, string(json))
+}
+
+
+// //Dinâmico
+
+// package main
+
+// import (
+//     "fmt"
+//     "net/http"
+//     "time"
+//     "log"
+// )
+
+// func horaCerta(w http.ResponseWriter, r *http.Request) {
+//     s := time.Now()/*.Format("02/01/2006 03:04:05")*/
+//     fmt.Fprintf(w, "<h1>Hora certa: %s<h1>", s)
+// }
+
+// func main() {
+//     http.HandleFunc("/horaCerta", horaCerta)
+//     log.Println("Executando...")
+//     log.Fatal(http.ListenAndServe(":3000", nil))
+// }
+
+
+// //http
+
+// package main
+
+// import (
+//     "log"
+//     "net/http"
+// )
+// func main() {
+//     fs := http.FileServer(http.Dir("public"))
+//     http.Handle("/", fs)
+
+//     log.Println("Executando...")
+//     log.Fatal(http.ListenAndServe(":3000", nil))
+// }
 
 // //Select
 
