@@ -15,8 +15,10 @@ spec:
     spec:
       containers:
         - name: frontend-container
-          image: nginx:42.nox
+          image: nginx
   selector:
     matchLabels:
       type: frontend
+  strategy:
+    type: RollingUpdate
   replicas: 6
