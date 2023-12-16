@@ -10,7 +10,7 @@ spec:
       spec:
         containers:
         - name: webapp
-      image: nginx
+          image: nginx
     selector:
       matchLabels:
         app: webapp
