@@ -15,3 +15,5 @@ spec:
       value: "0008"
     - name: MYSQL_DATABASE
       value: "dados"
+
+#10.244.0.3
