@@ -13,3 +13,6 @@ COPY . .
 
 #O comando default a ser executado ao iniciar o container
 CMD [ "npm", "start" ]
+
+# docker build -t simple-node .
+# docker run -p 3000:3000 -d simple-node
