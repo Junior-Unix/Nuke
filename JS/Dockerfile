@@ -1,2 +1,3 @@
 FROM httpd:2.4
-COPY . /usr/local/apache2/htdocs/
+LABEL maintainer="Junior-Unix<sonjunior@live.com>"
+
