@@ -7,7 +7,7 @@ var highScore;
 var output;
 for(var i = 0; i < scores.length; i++){
     output = "Buble solution #" + i + " score: " + scores[i];
-    console.log(output):
+    console.log(output);
     if(scores[i] > highScore){
         highScore = scores[i];
     }
@@ -23,8 +23,3 @@ for(var i = 0; i < scores.length; i++){
     }    
 }
 console.log("Solutions with the high score:" + bestSolution);
-// while( i > scores.length){
-//     output = "Bobble solution #" + i + " score: " + scores[i];
-//     console.log(output);
-//     i = i + 1;
-// }
