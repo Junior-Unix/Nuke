@@ -1,57 +1,123 @@
 var pessoa = {
-    obterDados: function(){
+
+    obterDados: function () {
+        this.nome = prompt('Qual seu nome?');
+        this.numTel = prompt('Qual o seu celular com DDD? - fornecer somente os dois digitos do DDD sem 0.');
+        this.ano = prompt('Qual seu ano de nascimento?');
+
+    }
+    ,
+
+    maiorDeIdade: function () {
         var data = new Date().getFullYear();
 
-        if((data - this.ano) >= 21){
+        if ((data - this.ano) >= 21) {
             return true;
-        }else{
+        } else {
             return false;
         }
+
     },
-    criarTelefone: function(){
+    criarTelefone: function () {
         this.formTel = '(';
-        for(var i = 0; i <= 1; i++){
+        for (var i = 0; i <= 1; i++) {
+
             this.formTel += this.numTel[i];
         }
-        this.formTel += ')';
+        this.formTel += ') ';
 
-        for(; i <=6; i++){
+        for (; i <= 6; i++) {
             this.formTel += this.numTel[i];
         }
         this.formTel += '-';
 
-        for(; i <= 10; i++){
+        for (; i <= 10; i++) {
             this.formTel += this.numTel[i];
         }
+
+
     },
-
-    // criarTelefone: function(){
-    //     this.formTel = '(';
-    //     for(var i = 0; i <= 1; i++){
-    //         this.formTel += this.numTel[i];
-    //     }
-    //     this.formTel =+ ')';
-
-    //     for(; i <=6; i++){
-    //         this.formTel =+ this.numTel[i];
-    //     }
-
-    //     for(; i <= 10; i++){
-    //         this.formTel =+ this.numTel[i];
-    //     }
-    // },
-    mensagem: function(){
-        this.maiorDeIdade() ?
-        alert('Caro(a), ' + this.nome + ' entramos em contato pelo telefone ' + this.formTel + ' para pedir suas informações e abrir sua conta no banco.')
-        : alert('Caro(a), ' + this.nome + ' entramos em contato pelo telefone ' + this.formTel + ' para pedir suas informações e de seu ...');
+    mensagem: function () {
+        var a = this.maiorDeIdade() ?
+            alert('Caro(a) ' + this.nome + ' entraremos em contato pelo telefone ' + this.formTel + ' para pedir suas informações e abrir sua conta no banco.')
+            :
+            alert('Caro(a), ' + this.nome + ' entraremos em contato pelo telefone ' + this.formTel + ' para pedir suas informações e de seu responsável abrir sua conta no banco.');
 
     },
 
-    construtor: function(){
+    construtor: function () {
         this.obterDados();
         this.criarTelefone();
-        this.mensagem
+        this.mensagem();
+
+
     }
 }
+;
 
 pessoa.construtor();
+
+// var pessoa = {
+//     obterDados: function () {
+
+//         this.nome = prompt('Qual seu nome?');
+//         this.numTel = prompt('Qual o seu celular com DDD? - fornecer somente os dois digitos do DDD sem 0.');
+//         this.ano = prompt('Qual seu ano de nascimento?');
+
+//     },
+//     obterDados: function(){
+//         var data = new Date().getFullYear();
+
+//         if((data - this.ano) >= 21){
+//             return true;
+//         }else{
+//             return false;
+//         }
+//     },
+//     criarTelefone: function(){
+//         this.formTel = '(';
+//         for(var i = 0; i <= 1; i++){
+//             this.formTel += this.numTel[i];
+//         }
+//         this.formTel += ')';
+
+//         for(; i <=6; i++){
+//             this.formTel += this.numTel[i];
+//         }
+//         this.formTel += '-';
+
+//         for(; i <= 10; i++){
+//             this.formTel += this.numTel[i];
+//         }
+//     },
+
+//     // criarTelefone: function(){
+//     //     this.formTel = '(';
+//     //     for(var i = 0; i <= 1; i++){
+//     //         this.formTel += this.numTel[i];
+//     //     }
+//     //     this.formTel =+ ')';
+
+//     //     for(; i <=6; i++){
+//     //         this.formTel =+ this.numTel[i];
+//     //     }
+
+//     //     for(; i <= 10; i++){
+//     //         this.formTel =+ this.numTel[i];
+//     //     }
+//     // },
+//     mensagem: function(){
+//         this.maiorDeIdade() ?
+//         alert('Caro(a), ' + this.nome + ' entramos em contato pelo telefone ' + this.formTel + ' para pedir suas informações e abrir sua conta no banco.')
+//         : alert('Caro(a), ' + this.nome + ' entramos em contato pelo telefone ' + this.formTel + ' para pedir suas informações e de seu ...');
+
+//     },
+
+//     construtor: function(){
+//         this.obterDados();
+//         this.criarTelefone();
+//         this.mensagem
+//     }
+// }
+
+// pessoa.construtor();
