@@ -8,3 +8,7 @@ console.log(image);
 image.onclick = function(){
     var elemento = document.getElementById()
 }
+image.onclick = function(){
+    var elemento = document.getElementById('img');
+    elemento.style.pointerEvents = 'auto';
+}
