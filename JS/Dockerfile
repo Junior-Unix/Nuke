@@ -1,7 +1,16 @@
-FROM httpd:2.4
-COPY . /usr/local/apache2/htdocs/
+#Dockerfile para criar um servidor web apache
+#Imagem base
+FROM httpd:2.4 
+#Porta exposta
+EXPOSE 80 
+#Diretório compartilhado
+VOLUME /usr/local/apache2/htdocs # diretório compartilhado
+
+#docker build -t servidor_web_apache .
+#run -d -p 8080:80 -v "$PWD":/usr/local/apache2/htdocs servidor_web_apache
+
 #Apache funcionando:
-#docker run --name "servidor_web_apache" -d -p 8081:80 -v "$PWD/:/usr/local/apache2/htdocs" httpd:2.4
+#docker run --name "servidor_web_apache" -d -p 8080:80 -v "$PWD/:/usr/local/apache2/htdocs" httpd:2.4
 
 #Nginx funciona melhor atualizando em tempo real.
 #docker run --name "servidor_web" -d -p 8080:80 -e NGINX_ENTRYPOINT_QUIET_LOGS=1 -v "$PWD/:/usr/share/nginx/html" nginx:1.19.4-alpine
