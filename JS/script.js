@@ -1,63 +1,48 @@
-var scores = [60, 50, 60, 58, 54, 54,
-              58, 50, 52, 54, 48, 69,
-              34, 55, 51, 52, 44, 51,
-              69, 64, 66, 55, 52, 61,
-              46, 31, 57, 52, 44, 18,
-              41, 53, 55, 61, 51, 44];
+// Carrega o módulo WebAssembly
+fetch('/workspaces/Nuke/JS/module.wasm')
+    .then(response => response.arrayBuffer())
+    .then(buffer => WebAssembly.compile(buffer))
+    .then(module => {
+        // Cria uma instância do módulo WebAssembly
+        const wasmInstance = new WebAssembly.Instance(module);
 
-var costs = [.25, .27, .25, .25, .25, .25,
-            .33, .31, .25, .29, .27, .22,
-            .31, .25, .25, .33, .21, .25,
-            .25, .25, .28, .25, .24, .22,
-            .20, .25, .30, .25, .24, .25,
-            .25, .25, .27, .25, .26, .29];
+        // Obtém a função exportada do módulo WebAssembly
+        const wasmFunction = wasmInstance.exports.functionName;
 
-function printAndGetHighScore(score){
-    var highScore = 0;
-    var output;
-    for(var i = 0; i < scores.length; i++){
-        output = "Bubble solution #:" + i + " score: " + scores[i];
-        console.log(output);
-        if(scores[i] > highScore){
-            highScore = scores[i];
+        // Obtém a referência para o elemento de entrada do HTML
+        const inputElement = document.getElementById('inputElement');
+
+        // Define uma variável permanente no módulo WebAssembly
+        wasmInstance.exports.permanentVariable = 42;
+
+        // Função para atualizar a variável dinâmica no módulo WebAssembly
+        function updateDynamicVariable() {
+            const inputValue = inputElement.value;
+            wasmInstance.exports.updateDynamicVariable(inputValue);
         }
-    }
-    return highScore;
+
+        // Adiciona um ouvinte de evento para chamar a função quando o valor de entrada mudar
+        inputElement.addEventListener('input', updateDynamicVariable);
+    })
+    .catch(error => {
+        console.error('Erro ao carregar o módulo WebAssembly:', error);
+    });
+const wasmInstance = new WebAssembly.Instance(wasmModule);
+
+// Obtém a função exportada do módulo WebAssembly
+const wasmFunction = wasmInstance.exports.functionName;
+
+// Obtém a referência para o elemento de entrada do HTML
+const inputElement = document.getElementById('inputElement');
+
+// Define uma variável permanente no módulo WebAssembly
+wasmInstance.exports.permanentVariable = 42;
+
+// Função para atualizar a variável dinâmica no módulo WebAssembly
+function updateDynamicVariable() {
+    const inputValue = inputElement.value;
+    wasmInstance.exports.updateDynamicVariable(inputValue);
 }
 
-function getMostCostEffectiveSolution(scores, costs, highScore){
-        var cost = 100;
-        var index;
-        for(var i = 0; i < scores.length; i++){
-            if(scores[i] == highScore){
-                if(cost > costs[i]){
-                index = i;
-                cost = cost[i];
-            }
-        }
-    }
-    return index;
-}
-
-// var highScore;
-// var output;
-// for(var i = 0; i < scores.length; i++){
-//     output = "Buble solution #" + i + " score: " + scores[i];
-//     console.log(output);
-//     if(scores[i] > highScore){
-//         highScore = scores[i];
-//     }
-// }
-var mostCostEffective = getMostCostEffectiveSolution(scores, costs, highScore);
-console.log("Bubble Solution #" + mostCostEffective + " is the most cost effective");
-var highScore = printAndGetHighScore(scores)
-console.log("Bubbles tests: " + scores.length);
-console.log("Highest Bubble score:" + highScore);
-
-var bestSolution = [];
-for(var i = 0; i < scores.length; i++){
-    if(scores[i] == highScore){
-    bestSolution.push(i);
-    }    
-}
-console.log("Solutions with the high score:" + bestSolution);
+// Adiciona um ouvinte de evento para chamar a função quando o valor de entrada mudar
+inputElement.addEventListener('input', updateDynamicVariable);

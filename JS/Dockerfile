@@ -4,7 +4,7 @@ FROM httpd:2.4
 #Porta exposta
 EXPOSE 80 
 #Diretório compartilhado
-VOLUME "$PWD/:/usr/local/apache2/htdocs" # diretório compartilhado
+VOLUME "$PWD/:/usr/local/apache2/htdocs" 
 
 #docker build -t server .
 #run -d -p 8080:80 -v "$PWD":/usr/local/apache2/htdocs servidor_web_apache //errado.
