@@ -1,8 +1,17 @@
-const array = [];
-for (let i = 0; i < 50; i++) {
-    const randomDecimal = Math.floor(Math.random() * 100);
-    array.push(randomDecimal);
+var fiat={
+    make: "Fiat",
+    started:false,
+    start: function(){
+        this.started=true;
+    },
+    stop: function(){
+        this.started=false;
+    },
+    drive: function(){
+        if(this.started){
+            alert("Zoom zoom!");
+        }else{
+            alert("You need to start the engine first,");
+        }
+    }
 }
-const maiorValor = Math.max(...array);
-console.log(array);
-console.log(maiorValor);
