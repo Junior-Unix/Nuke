@@ -7,7 +7,7 @@ EXPOSE 80
 VOLUME "$PWD/:/usr/local/apache2/htdocs" 
 
 #docker build -t server .
-#run -d -p 8080:80 -v "$PWD":/usr/local/apache2/htdocs servidor_web_apache //errado.
+#docker run -d -p 8080:80 -v "$PWD":/usr/local/apache2/htdocs servidor_web_apache //errado.
 #docker run -d -p 8080:80 -v "$PWD/:/usr/local/apache2/htdocs" server
 
 #Apache funcionando:
