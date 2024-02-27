@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#botao {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100px;
+    height: 50px;
+    background-color: blue;
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    animation: voar 5s infinite;
+}
+
+@keyframes voar {
+    0% {left: 0;}
+    50% {left: calc(100% - 100px);}
+    100% {left: 0;}
+}
+</style>
+</head>
+<body>
+
+<button id="botao">Botão Voador</button>
+
+</body>
+</html>
