@@ -6,7 +6,7 @@ var fiat = {
     },
     stop: function(){
         this.started=false;
-    },
+    }, 
     drive: function(){
         if(this.started){
             alert("Zoom zoom!");
