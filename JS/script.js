@@ -1,6 +1,6 @@
 var fiat={
     make: "Fiat",
-    started:false,
+    started: false,
     start: function(){
         this.started=true;
     },
@@ -15,3 +15,11 @@ var fiat={
         }
     }
 };
+fiat.drive();
+fiat.start();
+fiat.drive();
+fiat.stop();
+fiat.drive();
+
+
+
