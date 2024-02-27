@@ -10,7 +10,7 @@ RUN echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_P
 EXPOSE 3306
 
 # Start MySQL server
-CMD ["mysqld"]
+CMD ["mysqld"] 
 # # Path: Nuke/JS/mysql.dockerfile
 # Compare this snippet from Nuke/JS/Dockerfile:
 # #Dockerfile para criar um servidor web apache
