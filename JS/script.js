@@ -1,6 +1,25 @@
-var planet = document.getElementById("greenplanet");
-planet.innerHTML = "Red Alert: hit by phaser fire!";
-
+document.addEventListener("DOMContentLoaded", function() {
+    // Acessar o elemento pelo seu ID
+    var planet = document.getElementById("greenplanet");
+    // Verificar se o elemento existe
+    if (planet) {
+      // Definir a propriedade innerHTML
+      planet.innerHTML = "Red Alert: hit by phaser fire!";
+    } else {
+      // Mostrar uma mensagem de erro
+      console.error("Elemento com ID 'greenplanet' não encontrado");
+    }
+  });
+document.addEventListener("DOMContentLoaded", function() {
+    var planet = document.getElementById("redplanet");
+    if(planet){
+      planet.innerHTML = "Danger! We have a problem!";
+    }else{
+      console.error("Elemento com ID 'redplanet' não encontrado");
+    }
+});
+var planet = document.getElementById("blueplanet");
+planet.innerHTML = "Danger! We have a problem!";
 
 // function getSecret(file, secretPassword) {
 //     file.opened = file.opened + 1;

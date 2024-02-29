@@ -12,7 +12,7 @@ VOLUME "$PWD/:/usr/local/apache2/htdocs"
 
 #Apache funcionando:
 #docker run --name "servidor_web_apache" -d -p 8080:80 -v "$PWD/:/usr/local/apache2/htdocs" httpd:2.4
-
+#
 #Nginx funciona melhor atualizando em tempo real.
 #docker run --name "servidor_web" -d -p 8080:80 -e NGINX_ENTRYPOINT_QUIET_LOGS=1 -v "$PWD/:/usr/share/nginx/html" nginx:1.19.4-alpine
 
