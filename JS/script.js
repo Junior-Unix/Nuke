@@ -37,9 +37,14 @@ console.log(secret);
 //     model: "500",
 //     starded: false,
 //     fuel: 0,
+//     started: false,
 
 //     start: function(){
-//         this.starded=true;
+//         (this.fuel == 0){
+//             alert("The car is on empty, fill up before starting!");
+//         }else{
+//             this.started=true;
+//         }
 //     },
 //     stop: function(){
 //         this.started=false;
