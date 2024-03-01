@@ -4,7 +4,13 @@
         <meta charset="utf-8">
         <title>getElementById</title>
         <link rel="stylesheet" href="1.css">
-        <script src="script.js"></script>
+        <script src="script.js">
+            function init(){
+                var planet = document.getElementById("blueplanet");
+                planet.innerHTML = "Danger! We have a problem!";
+            }
+            window.onload = init;
+        </script>
     </head>
     <body>
         <div id="header">

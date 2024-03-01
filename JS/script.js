@@ -19,8 +19,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 //Não funciona da forma a seguir, apena na forma acima.
-var planet = document.getElementById("blueplanet");
-planet.innerHTML = "Danger! We have a problem!";
 
 // function getSecret(file, secretPassword) {
 //     file.opened = file.opened + 1;
