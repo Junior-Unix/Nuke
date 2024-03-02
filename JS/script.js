@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
       console.error("Elemento com ID 'redplanet' não encontrado");
     }
 });
+
 //Não funciona da forma a seguir, apena na forma acima.
 
 // function getSecret(file, secretPassword) {

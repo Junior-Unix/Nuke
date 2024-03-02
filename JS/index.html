@@ -1,15 +1,43 @@
 <!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf8">
+        <title>My Playlist!</title>
+        <script>
+            function addSongs(){
+                var song1 = document.getElementById("song1");
+                var song2 = document.getElementById("song2");
+                var song3 = document.getElementById("song3");
+
+                song1.innerHTML = "Blue Suede Strings";
+                song2.innerHTML = "The Jazzy Blues";
+                song3.innerHTML = "The Funky Blues";
+            }
+            window.onload = addSongs;
+        </script>
+    </head>
+    <body>
+        <h1>My awesome playlist:</h1>
+        <ul id="playlist">
+            <li id="song1"></li>
+            <li id="song2"></li>
+            <li id="song3"></li>
+        <p id="song1"></p>
+        <p id="song2"></p>
+        <p id="song3"></p>
+</html>
+<!-- <!DOCTYPE html>
 <html lang="eng">
     <head>
         <meta charset="utf-8">
         <title>getElementById</title>
         <link rel="stylesheet" href="1.css">
         <script src="script.js">
-            function init(){
-                var planet = document.getElementById("blueplanet");
-                planet.innerHTML = "Danger! We have a problem!";
-            }
-            window.onload = init;
+            // function init(){
+            //     var planet = document.getElementById("blueplanet");
+            //     planet.innerHTML = "Danger! We have a problem!";
+            // }
+            // window.onload = init;
         </script>
     </head>
     <body>
@@ -23,7 +51,7 @@
         <h1>Blue Planet</h1>
         <p id="blueplanet"></id>
     </body>
-</html>
+</html> -->
 <!-- <!DOCTYPE html>
 <html="eng">
     <head>
