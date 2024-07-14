@@ -52,7 +52,8 @@ int main() {
 
     // Exemplo de uso das funções
     cout << ola() << endl;
-    cout << "Hora atual: " << ctime(&horaAtual()) << endl;
+    time_t currentTime = horaAtual();
+    cout << "Hora atual: " << ctime(&currentTime) << endl;
 
     Usuario usuario = usuarioLogado();
     cout << "Usuário logado: " << usuario.nome << ", Salário: " << usuario.salario() << endl;
@@ -62,3 +63,5 @@ int main() {
 
     return 0;
 }
+// Para executar o código, basta compilar e executar o arquivo gerado. Por exemplo, no Linux, você pode usar o seguinte comando:
+// g++ index.cxx -o index && ./index
