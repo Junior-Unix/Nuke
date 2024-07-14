@@ -105,6 +105,23 @@ const resolvers = {
         usuarios() {
             return usuarios
         },
+// Função usuario:
+// Esta função é um resolver GraphQL que busca um usuário específico com base no id fornecido.
+// Parâmetros da Função:
+// A função recebe dois parâmetros: _ e { id }. O primeiro parâmetro (_) é geralmente usado 
+//para o objeto pai (root), mas não é utilizado aqui. O segundo parâmetro é um objeto que contém 
+//o id do usuário que está sendo buscado.
+// Filtragem de Usuários:
+// const selecionados = usuarios.filter(u => u.id === parseInt(id)):
+// usuarios é um array de objetos de usuários.
+// filter é um método de array que cria um novo array com todos os elementos que passam no 
+//teste implementado pela função fornecida.
+// u => u.id === parseInt(id) é a função de teste que verifica se o id do usuário (u.id) 
+//é igual ao id fornecido, convertido para um número inteiro com parseInt(id).
+// Retorno do Usuário:
+// return selecionados ? selecionados[0] : null:
+// Se o array selecionados não estiver vazio, retorna o primeiro elemento (selecionados[0]).
+// Se o array estiver vazio, retorna null.
         usuario(_, { id }) {
             const selecionados = usuarios
                 .filter(u => u.id === parseInt(id))
