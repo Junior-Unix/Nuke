@@ -1,3 +1,7 @@
+// typeDefs define o schema GraphQL usando a função gql.
+// resolvers define como as queries serão resolvidas.
+// ApolloServer é usado para criar e configurar o servidor GraphQL.
+// server.listen() inicia o servidor e exibe a URL onde ele está rodando.
 const { ApolloServer, gql } = require('apollo-server')
 
 const usuarios = [{
@@ -96,6 +100,23 @@ const resolvers = {
             }
         },
 
+// Função numeroMegaSena:
+// Esta função gera um conjunto de números aleatórios para um sorteio da Mega-Sena.
+// Função de Comparação crescente:
+// const crescente = (a, b) => a - b:
+// Define uma função de comparação que ordena os números em ordem crescente.
+// Se a for menor que b, a função retorna um valor negativo, indicando que a deve vir antes de b.
+// Criação de um Array de 6 Elementos:
+// Array(6).fill(0):
+// Cria um array de 6 elementos, todos inicializados com 0.
+// Mapeamento para Números Aleatórios:
+// .map(n => parseInt(Math.random() * 60 + 1)):
+// Usa o método map para substituir cada elemento do array por um número aleatório entre 1 e 60.
+// Math.random() * 60 gera um número aleatório entre 0 e 59.999…
+// parseInt(Math.random() * 60 + 1) converte esse número para um inteiro entre 1 e 60.
+// Ordenação dos Números:
+// .sort(crescente):
+// Ordena os números gerados em ordem crescente usando a função de comparação crescente.
         numeroMegaSena() {
             const crescente = (a, b) => a - b
             return Array(6).fill(0)
@@ -130,11 +151,24 @@ const resolvers = {
     }
 }
 
+// Criação do Servidor Apollo:
+// const server = new ApolloServer({ typeDefs, resolvers }):
+// Aqui, você está criando uma nova instância do ApolloServer.
+// typeDefs são as definições de tipos GraphQL que você criou anteriormente.
+// resolvers são as funções que resolvem as consultas (queries) e mutações definidas nos typeDefs.
 const server = new ApolloServer({
     typeDefs,
     resolvers
 })
 
+// Iniciando o Servidor:
+// server.listen():
+// Este método inicia o servidor Apollo.
+// Ele retorna uma promessa que, quando resolvida, fornece um objeto contendo a URL onde o servidor está sendo executado.
+// Log da URL:
+// .then(({ url }) => { console.log(Executando em ${url}) }):
+// Quando a promessa é resolvida, a URL do servidor é extraída do objeto retornado.
+// A URL é então exibida no console com a mensagem Executando em ${url}.
 server.listen().then(({ url }) => {
     console.log(`Executando em ${url}`)
 })
