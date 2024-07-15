@@ -4,6 +4,11 @@
 // server.listen() inicia o servidor e exibe a URL onde ele está rodando.
 const { ApolloServer, gql } = require('apollo-server')
 
+const perfis = [
+    { id: 1, nome: 'comum' },
+    { id: 2, nome: 'administrador' }
+]
+
 const usuarios = [{
     id: 1,
     nome: 'João Silva',
@@ -25,11 +30,17 @@ const typeDefs = gql`
 
     scalar Date
 
+
     type Produto {
         nome: String!
         preco: Float!
         desconto: Float
         precoComDesconto: Float
+    }
+
+    type Perfil {
+        id: Int
+        nome: String
     }
 
     type Usuario {
@@ -50,6 +61,8 @@ const typeDefs = gql`
         numeroMegaSena: [Int]!
         usuarios: [Usuario]
         usuario(id: ID): Usuario
+        perfis: [Perfil]
+        perfil(id: Int): Perfil
 
     }
 `
@@ -146,6 +159,29 @@ const resolvers = {
         usuario(_, { id }) {
             const selecionados = usuarios
                 .filter(u => u.id === parseInt(id))
+            return selecionados ? selecionados[0] : null
+        },
+        
+// Parâmetros da Função:
+// A função perfil recebe dois parâmetros: _ e { id }.
+// O primeiro parâmetro (_) é geralmente usado para o objeto pai (root), mas não é utilizado aqui.
+// O segundo parâmetro é um objeto que contém o id do perfil que está sendo buscado.
+// Filtragem de Perfis:
+// const selecionados = perfis.filter(p => p.id === id):
+// perfis é um array de objetos de perfis.
+// filter é um método de array que cria um novo array com todos os elementos que passam no teste implementado pela função fornecida.
+// p => p.id === id é a função de teste que verifica se o id do perfil (p.id) é igual ao id fornecido.
+// Retorno do Perfil:
+// return selecionados ? selecionados[0] : null:
+// Se o array selecionados não estiver vazio, retorna o primeiro elemento (selecionados[0]).
+// Se o array estiver vazio, retorna null.
+        perfis() {
+            return perfis
+        },
+
+        perfil(_, { id }) {
+            const selecionados = perfis
+                .filter(p => p.id === id)
             return selecionados ? selecionados[0] : null
         }
     }
