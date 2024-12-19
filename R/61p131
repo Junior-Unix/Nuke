@@ -1,0 +1,13 @@
+# Dados
+admit_rate <- c(44, 71, 29, 39, 66, 28, 54, 10, 26, 43, 76, 67, 6, 66, 81, 18, 31, 9, 15, 8, 17, 56, 51, 54, 75, 13, 40, 67, 41, 68)
+grad_rate <- c(73, 62, 89, 86, 55, 73, 63, 88, 84, 77, 71, 68, 86, 59, 66, 88, 71, 84, 86, 88, 84, 62, 79, 68, 50, 86, 70, 68, 47, 71)
+
+# Gráfico de dispersão
+plot(admit_rate, grad_rate,
+    main = "Diagrama de Dispersão: Taxa de Admissão vs. Taxa de Graduados",
+    xlab = "Taxa de Admissão (%)",
+    ylab = "Taxa de Graduados em 4 anos (%)",
+    col = "blue", pch = 19)
+
+# Adicionar uma linha de tendência (opcional)
+abline(lm(grad_rate ~ admit_rate), col = "red", lwd = 2)
