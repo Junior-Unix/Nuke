@@ -21,6 +21,12 @@ main(int argc, char *argv[]){
     while((ch=fgetc(fp))!=EOF){
         putchar(ch);
     }
+    //Investigação do tamanho que um ponteiro de arquivo ocupa na memória.
+    printf("%d\n%d\n", &fp[0],strlen(fp));
+    //Laço para investigar o endereço de memória de cada posição do ponteiro de arquivo.
+    for(int i=0; i<strlen(fp); i++){
+        printf("%p\n", fp[i]);
+    }
     fclose(fp);
 
 }
