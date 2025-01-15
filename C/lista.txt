@@ -1,0 +1,4 @@
+Maria   7
+João    9
+Zé      2
+Rute    3
