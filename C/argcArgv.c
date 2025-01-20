@@ -21,6 +21,8 @@ main(int argc, char *argv[]){
 
     switch(argc){
         case 1: break;
+        // case 2: n_lins = (argv[1][0] == SINAL) ? atoi(argv[1] + 1) : ((fp = fopen(argv[1], "r")) == NULL ? Erro(2, argv[1]) : 0); //não funcionou.
+
         case 2: if (argv[1][0] ==SINAL)
             n_lins = atoi(argv[1]+1);
             else
