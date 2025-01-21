@@ -43,7 +43,7 @@ main( int argc, char *argv[]){
 	}
 	fclose(fp);
 }
-void Erro_Fatal( int num+erro, char *string){
+void Erro_Fatal( int num_erro, char *string){
 	switch(num_erro){
 		case 1:
 			fprintf(stderr, "Sintaxe:\nconta [-l] [Arq]\n\n");
