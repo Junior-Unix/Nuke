@@ -36,7 +36,7 @@ main( int argc, char *argv[]){
 	}
 
 	while ( fgets( s, MAX_LIN+1, fp) != NULL){
-		s[strlen(s)-1 = '\0';
+		s[strlen(s)-1] = '\0';
 			if( mostra_linhas)
 				fprintf( stdout, "%d: %d\n", ++nlinha, strlen(s));
 
