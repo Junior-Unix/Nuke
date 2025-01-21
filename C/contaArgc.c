@@ -19,7 +19,7 @@ main( int argc, char *argv[]){
 	switch( argc){
 	
 		case 1: break;
-		case 2: if(stricmp(argv[1], MENOS_L) == 0)
+		case 2: if( stricmp(argv[1], MENOS_L) == 0)
 				mostra_linhas = 1;
 			else if (( fp = fopen( argv[1], "r")) == NULL)
 				Erro_Fatal( 2, argv[1]);
