@@ -8,6 +8,7 @@
 #define MAX_LIN 80
 
 void Erro_Fatal( char *num_erro, char *string);
+char stricmp( char *s1, char *s2);
 
 void main( int argc, char *argv[]){
 
