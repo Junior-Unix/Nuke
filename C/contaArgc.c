@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define MENOS '-'
 #define MENOS_L "-l"
@@ -19,14 +20,14 @@ main( int argc, char *argv[]){
 	switch( argc){
 	
 		case 1: break;
-		case 2: if( stricmp(argv[1], MENOS_L) == 0)
+		case 2: if( strcmp(argv[1], MENOS_L) == 0)
 				mostra_linhas = 1;
 			else if (( fp = fopen( argv[1], "r")) == NULL)
 				Erro_Fatal( 2, argv[1]);
 			break;
 		case 3: if (argv[1][0] != MENOS)
 				Erro_Fatal( 3, argv[1]);
-			if (stricmp( argv[1]) != 0)
+			if (strcmp( argv[1]) != 0)
 				Erro_Fatal( 3, argv[1]);
 			mostra_linhas = 1;
 			if ((fp = fopen( argv[2], "r")) == NULL)
