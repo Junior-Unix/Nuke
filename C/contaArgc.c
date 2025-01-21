@@ -27,7 +27,7 @@ main( int argc, char *argv[]){
 			break;
 		case 3: if (argv[1][0] != MENOS)
 				Erro_Fatal( 3, argv[1]);
-			if (strcmp( argv[1]) != 0)
+			if (strcmp( argv[1]), MENOS_L != 0)
 				Erro_Fatal( 3, argv[1]);
 			mostra_linhas = 1;
 			if ((fp = fopen( argv[2], "r")) == NULL)
