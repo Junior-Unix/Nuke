@@ -45,9 +45,9 @@ void main( int argc, char *argv[]){
 		s[strlen(s)-1] = '\0';
 
 		if( mostra_linhas)
-			fprintf(stdout, "%d: %d\n", ++n_linha, strlen(s));
+			fprintf(stdout, "%ld: %ld\n", ++n_linha, strlen(s));
 		else
-			printf("%d\n", strlen(s));
+			printf("%ld\n", strlen(s));
 	}
 	fclose( fp);
 }
