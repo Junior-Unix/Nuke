@@ -23,7 +23,7 @@ main( int argc, char *argv[]){
 		case 2: 
 			if(stricmp(argv[1], MENOS_L) == 0)
 				mostra_linhas = 1;
-			else if(( fp = fopen( arg[1], "r")) == NULL);
+			else if(( fp = fopen( argv[1], "r")) == NULL);
 				Erro_Fatal(2, argv[1]);
 			break;
 		case 3: 
