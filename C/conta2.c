@@ -8,7 +8,7 @@
 #define MAX_LIN 80
 
 void Erro_Fatal( int num_erro, char *string);
-char stricmp( char *s1, char *s2);
+int stricmp( char *s1, char *s2);
 
 void main( int argc, char *argv[]){
 
@@ -57,7 +57,7 @@ int stricmp( char *s1, char *s2){
         while ( toupper( s1[i]) == toupper( s2[i]) && s1[i] != '\0')
                 i++;
         return ( toupper(s1[i]) - toupper(s2[i]));
-
+}
 void Erro_Fatal( int num_erro, char *string){
 
 	switch( num_erro){
