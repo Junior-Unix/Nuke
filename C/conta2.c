@@ -9,7 +9,7 @@
 
 void Erro_Fatal( char *num_erro, char *string);
 
-main( int argc, char *argv[]){
+void main( int argc, char *argv[]){
 
 	int mostra_linhas = 0;
 	int n_linha = 0;
