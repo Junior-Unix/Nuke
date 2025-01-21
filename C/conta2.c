@@ -58,9 +58,13 @@ void Erro_Fatal( int num_erro, char *string){
 		case 1:
 			fprintf( stderr, "Sintaxe:nconta [-l] [Arq]\n\n");
 			break;
-		case:
+		case 2:
 			fprintf( stderr, "Imp. abrir o arquivo '%s'\n", string);
 			break;
+		case 3: 
+			fprintf( stderr, "Opção \"%s\"Inválida\n", string);
+			break;
+
 	}
 	exit(num_erro);
 
