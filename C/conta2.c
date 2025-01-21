@@ -45,7 +45,9 @@ void main( int argc, char *argv[]){
 		s[strlen(s)-1] = '\0';
 
 		if( mostra_linhas)
-			fprintf("%d\n", strlen(s));
+			fprintf(stdout, "%d: %d\n", ++n_linha, strlen(s));
+		else
+			printf("%d\n", strlen(s));
 	}
 	fclose( fp);
 }
