@@ -1,0 +1,11 @@
+--2025-01-21 02:50:23--  https://code.visualstudio.com/docs/?dv=wincli
+Resolving code.visualstudio.com (code.visualstudio.com)... 13.107.246.41, 2620:1ec:bdf::41
+Connecting to code.visualstudio.com (code.visualstudio.com)|13.107.246.41|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 59539 (58K) [text/html]
+Saving to: ‘index.html?dv=wincli’
+
+index.html?dv=wincli                      0%[                                                                              ]       0  --.-KB/s               index.html?dv=wincli                    100%[=============================================================================>]  58.14K  --.-KB/s    in 0.002s  
+
+2025-01-21 02:50:23 (22.9 MB/s) - ‘index.html?dv=wincli’ saved [59539/59539]
+
