@@ -16,7 +16,7 @@ void print_context(char *words[], int start, int end, int total_words) {
 
 int main() {
     FILE *file;
-    char filename[] = "zelda.txt";
+    char filename[] = "pointer.c";
     char word[MAX_WORD_LENGTH];
     char *words[1000];
     char buffer[MAX_WORD_LENGTH];
